@@ -1,9 +1,9 @@
-package Homework1;
+package homework.homework1;
 
 public class IfForExample {
     public static void main(String[] args) {
         int a = 15;
-        int b = 15;
+        int b = 30;
         System.out.print("max: ");
         if (a >= b) {
             System.out.println(a);
@@ -24,6 +24,9 @@ public class IfForExample {
             }
             System.out.println(b);
         }
+        //..................
+        System.out.println((char) a);
+        System.out.println((char) b);
         //..................
         if (a == b) {
             System.out.println("a-ն հավասար է b-ին");
