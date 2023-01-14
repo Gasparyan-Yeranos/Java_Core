@@ -14,7 +14,7 @@ public class ArrayUtil {
         //--------------------------------------------------------------
         System.out.print("odds of array: ");
         for (int i = 0; i < size; i++) {
-            if(array[i]%2==1){
+            if(array[i]%2!=0){
                 System.out.print(array[i] + " ");
             }
         }
@@ -30,7 +30,7 @@ public class ArrayUtil {
         System.out.println("evens: " + evenAmount);
         int oddAmount = 0;
         for (int i = 0; i < size; i++) {
-            if(array[i]%2==1){
+            if(array[i]%2!=0){
                 oddAmount++;
             }
         }
@@ -47,7 +47,7 @@ public class ArrayUtil {
         //--------------------------------------------------------------
         System.out.println("last element: " + array[size-1]);
         //--------------------------------------------------------------
-        System.out.println("middler element: " + array[(size-1)/2]);
+        System.out.println("middle element: " + array[(size-1)/2]);
 
     }
 }
