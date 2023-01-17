@@ -15,6 +15,6 @@ public class Calculator {
             System.out.println("numbers can't be divided on 0");
             return -1;
         }
-        return a - b;
+        return a / b;
     }
 }
