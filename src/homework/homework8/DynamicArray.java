@@ -8,8 +8,7 @@ public class DynamicArray {
         if( size == length ){
             this.extend();
         }
-        array[size] = value;
-        size++;
+        array[size++] = value;
     }
     private void extend() {
         length += 10;
@@ -25,6 +24,63 @@ public class DynamicArray {
             return array[index];
         }
         System.out.println("Index out of borders");
+        return -1;
+    }
+    public void deleteByIndex(int index){
+        if(index < 0 || index >= size){
+            System.out.println("Index Out Of Borders.");
+        }else{
+            int[] newArray = new int[length];
+            for (int i = 0; i < index; i++) {
+                newArray[i] = array[i];
+            }
+
+            for (int i = index ; i < size - 1; i++) {
+                newArray[i] = array[i + 1];
+            }
+            array = newArray;
+            newArray = null;
+            size--;
+        }
+    }
+    public void set(int index, int value){
+        if(index < 0 || index >= size){
+            System.out.println("Index Out Of Borders.");
+        }else {
+            array[index] = value;
+        }
+    }
+    public void add(int index, int value){
+        if(index < 0 || index > size){
+            System.out.println("Index Out Of Borders.");
+        }else{
+            int[] newArray = new int[length];
+            for (int i = 0; i < index; i++) {
+                newArray[i] = array[i];
+            }
+            newArray[index] = value;
+            for (int i = index; i < size; i++) {
+                newArray[i + 1] = array[i];
+            }
+            array = newArray;
+            newArray = null;
+            size++;
+        }
+    }
+    public boolean exist(int value) {
+        for (int x: array) {
+            if( x == value ) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public int getIndexByValue(int value){
+        for (int i = 0; i < size; i++) {
+            if(value == array[i]){
+                return i;
+            }
+        }
         return -1;
     }
     public void print() {
