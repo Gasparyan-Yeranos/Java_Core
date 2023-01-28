@@ -9,6 +9,7 @@ public class DynamicArray {
             this.extend();
         }
         array[size++] = value;
+
     }
     private void extend() {
         length += 10;
@@ -29,19 +30,12 @@ public class DynamicArray {
     public void deleteByIndex(int index){
         if(index < 0 || index >= size){
             System.out.println("Index Out Of Borders.");
-        }else{
-            int[] newArray = new int[length];
-            for (int i = 0; i < index; i++) {
-                newArray[i] = array[i];
-            }
-
-            for (int i = index ; i < size - 1; i++) {
-                newArray[i] = array[i + 1];
-            }
-            array = newArray;
-            newArray = null;
-            size--;
+            return;
         }
+        for (int i = index + 1; i < size; i++) {
+            array[i-1] = array[i];
+        }
+        size--;
     }
     public void set(int index, int value){
         if(index < 0 || index >= size){
@@ -54,16 +48,13 @@ public class DynamicArray {
         if(index < 0 || index > size){
             System.out.println("Index Out Of Borders.");
         }else{
-            int[] newArray = new int[length];
-            for (int i = 0; i < index; i++) {
-                newArray[i] = array[i];
+            if(size == length){
+                extend();
             }
-            newArray[index] = value;
-            for (int i = index; i < size; i++) {
-                newArray[i + 1] = array[i];
+            for (int i = size + 1; i > index; i--) {
+                array[i] = array[i-1];
             }
-            array = newArray;
-            newArray = null;
+            array[index] = value;
             size++;
         }
     }
