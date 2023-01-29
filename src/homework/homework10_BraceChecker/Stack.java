@@ -34,5 +34,4 @@ public class Stack {
         }
         return(array[size-1]);
     }
-
 }
