@@ -33,9 +33,10 @@ public class EmployeeStorage {
     }
     public void printByID(String employeeID){
         for (int i = 0; i < size; i++) {
-            if (array[i].getEmpleyeeID() == employeeID) {
+            if ( array[i].getEmpleyeeID().equals(employeeID) ) {
                 System.out.println("_______________________________");
                 System.out.println(array[i]);
+                System.out.println("_______________________________");
                 return;
             }
         }
@@ -44,13 +45,11 @@ public class EmployeeStorage {
     public void printByCompany(String company){
         boolean found = false;
         for (int i = 0; i < size; i++) {
-            if (array[i].getCompany() == company) {
+            if ( array[i].getCompany().equals(company) ) {
                 System.out.println("_______________________________");
                 System.out.println(array[i]);
+                System.out.println("_______________________________");
                 found = true;
-            }else{
-                System.out.println( "array[i].getCompany() == " + array[i].getCompany() );
-                System.out.println( "company == " + company );
             }
         }
         if (!found){
