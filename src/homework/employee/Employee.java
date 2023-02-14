@@ -5,23 +5,34 @@ import java.util.Objects;
 
 public class Employee {
     private String name = "Unknown";
-    private String surename = "Unknown";
+    private String surname = "Unknown";
     private String empleyeeID = "Unknown";
-    private String salery = "Unknown";
+    private double salary = 0.0;
     private String company = "Unknown";
     private String position = "Unknown";
+    private boolean active = true;
+
+    public Employee(){}
+    public Employee(String name, String surename, String empleyeeID, String salary, String company, String position){
+        this.name = name;
+        this.surname =surename;
+        this.empleyeeID = empleyeeID;
+        this.salary = Double.parseDouble(salary);
+        this.company =company;
+        this.position = position;
+    }
 
     public String getName() {
         return this.name;
     }
-    public String getSurename() {
-        return this.surename;
+    public String getSurname() {
+        return this.surname;
     }
     public String getEmpleyeeID() {
         return this.empleyeeID;
     }
-    public String getSalery() {
-        return this.salery;
+    public double getSalary() {
+        return this.salary;
     }
     public String getCompany() {
         return this.company;
@@ -29,19 +40,23 @@ public class Employee {
     public String getPosition() {
         return this.position;
     }
+    public boolean isActive() {
+        return active;
+    }
+
 
 
     public void setName(String name) {
         this.name = name;
     }
-    public void setSurename(String surename) {
-        this.surename = surename;
+    public void setSurname(String surename) {
+        this.surname = surename;
     }
     public void setEmpleyeeID(String empleyeeID) {
         this.empleyeeID = empleyeeID;
     }
-    public void setSalery(String salery) {
-        this.salery = salery;
+    public void setSalary(double salery) {
+        this.salary = salery;
     }
     public void setCompany(String company) {
         this.company = company;
@@ -49,43 +64,38 @@ public class Employee {
     public void setPosition(String position) {
         this.position = position;
     }
-
-    public Employee(String name, String surename, String empleyeeID, String salery, String company, String position){
-        this.name = name;
-        this.surename =surename;
-        this.empleyeeID = empleyeeID;
-        this.salery = salery;
-        this.company =company;
-        this.position = position;
+    public void setActive(boolean active) {
+        this.active = active;
     }
-    public Employee(){}
 
     @Override
     public String toString() {
-        return ("Name: " + name + "\n" +
-                "Surename: " + surename + "\n" +
-                "Employee ID: " + empleyeeID + "\n" +
-                "Salery: " + salery + "\n" +
-                "Company: " + company + "\n" +
-                "Position: " + position);
+        return "Employee{\n" +
+                "    Name: '" + name + "'\n" +
+                "    Surname: '" + surname + "'\n" +
+                "    EmpleyeeID : '" + empleyeeID + "'\n" +
+                "    Salary: " + salary + "'\n" +
+                "    Company: '" + company + "'\n" +
+                "    Position: '" + position + "'\n" +
+                "    Active: '" + active + "'\n" +
+                '}';
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return salery == employee.salery &&
+        return salary == employee.salary &&
                 Objects.equals(name, employee.name) &&
-                Objects.equals(surename, employee.surename) &&
+                Objects.equals(surname, employee.surname) &&
                 Objects.equals(empleyeeID, employee.empleyeeID) &&
                 Objects.equals(company, employee.company) &&
-                Objects.equals(position, employee.position);
+                Objects.equals(position, employee.position) &&
+                Objects.equals(active, employee.active);
     }
-
     @Override
     public int hashCode() {
-        return Objects.hash(name, surename, empleyeeID, salery, company, position);
+        return Objects.hash(name, surname, empleyeeID, salary, company, position, active);
     }
 
 }

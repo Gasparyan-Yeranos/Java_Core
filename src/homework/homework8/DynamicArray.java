@@ -1,7 +1,7 @@
 package homework.homework8;
 
 public class DynamicArray {
-    int[] array = new int[10];
+    private int[] array = new int[10];
     int size = 0;
     int length = 10;
     public void add(int value) {
