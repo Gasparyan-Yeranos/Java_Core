@@ -90,7 +90,6 @@ public class EmployeeDemo {
                     employeeTmp = employeeList.getEmployeeByID(ID2);
                     if( employeeTmp != null ){
                         employeeTmp.setActive(false);
-                        System.out.println("Employee with ID \"" + ID2 + "\" is not active anymore.");
                     }else{
                         System.out.println("Active employees with ID \"" + ID2 + "\" can't be found.");
                     }
