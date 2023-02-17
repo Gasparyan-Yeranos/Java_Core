@@ -1,6 +1,9 @@
 package homework.employee;
 
+import java.util.Scanner;
+
 public class EmployeeStorage {
+    Scanner scanner = new Scanner(System.in);
     private Employee[] employees = new Employee[10];
     int size = 0;
     int length = 10;
@@ -20,9 +23,10 @@ public class EmployeeStorage {
         tmp = null;
     }
     public void print(){
+        System.out.println();
         if(size==0){
             System.out.println("_______________________________");
-            System.out.println("No employees have been inputed yet.");
+            System.out.println("No employees have been input yet.");
         }
         for (int i = 0; i < size; i++) {
             System.out.println("_______________________________");
@@ -30,9 +34,11 @@ public class EmployeeStorage {
         }
         System.out.println("_______________________________");
     }
-    public void printByID(String employeeID){
+    public void printByID(){
+        System.out.println("input employee ID:");
+        String employeeID = scanner.nextLine();
         for (int i = 0; i < size; i++) {
-            if ( employees[i].getEmpleyeeID().equals(employeeID) ) {
+            if ( employees[i].getEmployeeID().equals(employeeID) ) {
                 System.out.println("_______________________________");
                 System.out.println(employees[i]);
                 System.out.println("_______________________________");
@@ -41,7 +47,9 @@ public class EmployeeStorage {
         }
         System.out.println("Employee with ID \"" + employeeID + "\" can't be found.");
     }
-    public void printByCompany(String company){
+    public void printByCompany(){
+        System.out.println("Input company name:");
+        String company = scanner.nextLine();
         boolean found = false;
         for (int i = 0; i < size; i++) {
             if ( employees[i].getCompany().equals(company) ) {
@@ -57,29 +65,73 @@ public class EmployeeStorage {
     }
     public Employee getEmployeeByID(String ID){
         for (int i = 0; i < size; i++) {
-            if(employees[i].getEmpleyeeID().equals(ID)){
+            if(employees[i].getEmployeeID().equals(ID)){
                 return employees[i];
             }
         }
         return  null;
     }
-    public void printIfIsActive(){
+    public void printByStatus(boolean active){
+        System.out.println("_______________________________");
         for (int i = 0; i < size; i++) {
-            if(employees[i].isActive()){
+            if(employees[i].isActive() == active){
                 System.out.println(employees[i]);
+                System.out.println("_______________________________");
             }
         }
     }
-    public void printBysalary(String a, String b){
-        double salary1 = Double.parseDouble(a);
-        double salary2 = Double.parseDouble(b);
+    public void printBySalary(){
+        System.out.println("Input min and max:");
+        String salaryRangeStr = scanner.nextLine();
+        String salaryRange[] = salaryRangeStr.split(",");
+        double min = Double.parseDouble(salaryRange[0]);
+        double max = Double.parseDouble(salaryRange[1]);
+        if(min > max){
+            System.out.println("Min can't be larger than max.");
+            System.out.println("Try again.");
+            return;
+        }
         for (int i = 0; i < size; i++) {
-            if( (employees[i].getSalary()>=salary2 && employees[i].getSalary()<=salary1) ||
-                (employees[i].getSalary()>salary1 && employees[i].getSalary()<salary2) ){
+            if( employees[i].getSalary()>=min && employees[i].getSalary()<=max ){
                 System.out.println("_______________________________");
                 System.out.println(employees[i]);
             }
         }
         System.out.println("_______________________________");
+    }
+    public void changePositionByID(){
+        System.out.println("Input employee ID:");
+        String ID = scanner.nextLine();
+        Employee employeeTmp = getEmployeeByID(ID);
+        if( employeeTmp != null ){
+            System.out.println("Input new position name:");
+            String positionName = scanner.nextLine();
+            employeeTmp.setPosition(positionName);
+            System.out.println("The position of employee with ID \"" + ID + "\" was changed to " + positionName);
+        }else{
+            System.out.println("Employee with ID \"" + ID + "\" can't be found.");
+        }
+    }
+    public void inactivateByID(){
+        printByStatus(true);
+        System.out.println("Input employee ID:");
+        String ID = scanner.nextLine();
+        Employee employeeTmp = getEmployeeByID(ID);
+        if( employeeTmp != null && employeeTmp.isActive()){
+            employeeTmp.setActive(false);
+        }else{
+            System.out.println("Active employees with ID \"" + ID + "\" can't be found.");
+        }
+    }
+    public void activateByID(){
+        printByStatus(false);
+        System.out.println("Input employee ID:");
+        String ID = scanner.nextLine();
+        Employee employeeTmp = getEmployeeByID(ID);
+        if( employeeTmp != null && employeeTmp.isActive()){
+            employeeTmp.setActive(false);
+        }else{
+            System.out.println("Inactive employees with ID \"" + ID + "\" can't be found.");
+        }
     }
 }
