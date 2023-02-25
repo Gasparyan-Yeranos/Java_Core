@@ -1,6 +1,7 @@
-package homework.employee;
+package homework.employee.model;
+import homework.employee.util.DateUtil;
+
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
@@ -9,23 +10,29 @@ public class Employee {
     private String surname;
     private String employeeID;
     private double salary;
-    private String company;
+    private Company company;
     private String position;
     private boolean active;
-    private Date dateOfBirth = new Date();
-    private Date dateOfRegister = new Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private Date dateOfBirth;
+    private Date dateOfRegister;
     public Employee(){}
-    public Employee(String name, String surname, String dateOfBirthday, String employeeID, String salary, String company, String position) throws ParseException {
+    public Employee(String name,
+                    String surname,
+                    String dateOfBirthday,
+                    String employeeID,
+                    String salary,
+                    Company company,
+                    String position,
+                    Date dateOfRegister) throws ParseException {
         this.name = name;
         this.surname = surname;
+        this.dateOfBirth = DateUtil.stringToDate(dateOfBirthday);
         this.employeeID = employeeID;
         this.salary = Double.parseDouble(salary);
         this.company = company;
         this.position = position;
         this.active = true;
-        this.dateOfRegister = new Date();
-        this.dateOfBirth = sdf.parse(dateOfBirthday);
+        this.dateOfRegister = dateOfRegister;
     }
     public String getName() {
         return this.name;
@@ -39,7 +46,7 @@ public class Employee {
     public double getSalary() {
         return this.salary;
     }
-    public String getCompany() {
+    public Company getCompany() {
         return this.company;
     }
     public String getPosition() {
@@ -67,7 +74,7 @@ public class Employee {
     public void setSalary(double salary) {
         this.salary = salary;
     }
-    public void setCompany(String company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
     public void setPosition(String position) {
@@ -84,10 +91,10 @@ public class Employee {
                 "    Surname: " + surname + "\n" +
                 "    EmployeeID : " + employeeID + "\n" +
                 "    Salary: " + salary + "\n" +
-                "    Company: " + company + "\n" +
+                "    Company: " + company.getName() + "\n" +
                 "    Position: " + position + "\n" +
                 "    Active: " + active + "\n" +
-                "    Birthday: " + sdf.format(dateOfBirth) + "\n" +
+                "    Birthday: " + DateUtil.dateToString(dateOfBirth) + "\n" +
                 "    Registered in: " + dateOfRegister + "\n" +
                 '}';
     }

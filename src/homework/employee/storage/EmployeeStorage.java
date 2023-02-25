@@ -1,4 +1,7 @@
-package homework.employee;
+package homework.employee.storage;
+
+import homework.employee.model.Company;
+import homework.employee.model.Employee;
 
 import java.util.Scanner;
 
@@ -47,9 +50,8 @@ public class EmployeeStorage {
         }
         System.out.println("Employee with ID \"" + employeeID + "\" can't be found.");
     }
-    public void printByCompany(){
-        System.out.println("Input company name:");
-        String company = scanner.nextLine();
+    public void printByCompany(Company company){
+
         boolean found = false;
         for (int i = 0; i < size; i++) {
             if ( employees[i].getCompany().equals(company) ) {
@@ -57,6 +59,7 @@ public class EmployeeStorage {
                 System.out.println(employees[i]);
                 System.out.println("_______________________________");
                 found = true;
+                break;
             }
         }
         if (!found){
@@ -119,6 +122,7 @@ public class EmployeeStorage {
         Employee employeeTmp = getEmployeeByID(ID);
         if( employeeTmp != null && employeeTmp.isActive()){
             employeeTmp.setActive(false);
+            employeeTmp.getCompany().setEmployees( employeeTmp.getCompany().getEmployees() - 1 );
         }else{
             System.out.println("Active employees with ID \"" + ID + "\" can't be found.");
         }
@@ -128,8 +132,9 @@ public class EmployeeStorage {
         System.out.println("Input employee ID:");
         String ID = scanner.nextLine();
         Employee employeeTmp = getEmployeeByID(ID);
-        if( employeeTmp != null && employeeTmp.isActive()){
-            employeeTmp.setActive(false);
+        if( employeeTmp != null && !employeeTmp.isActive()){
+            employeeTmp.setActive(true);
+            employeeTmp.getCompany().setEmployees( employeeTmp.getCompany().getEmployees() + 1 );
         }else{
             System.out.println("Inactive employees with ID \"" + ID + "\" can't be found.");
         }
