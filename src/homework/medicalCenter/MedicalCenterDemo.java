@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 //0B_001,John,Smith,doc@gmail.com,012345678,dentist
-
+//0b-003,Poxos,Poxosyan,098765432,0A_012,18/02/2023 11:11
 public class MedicalCenterDemo implements Commands{
 
     public static PersonStorage list = new PersonStorage();
@@ -29,7 +29,7 @@ public class MedicalCenterDemo implements Commands{
         String doctorData[] = doctorStr.split(",");
         boolean found = false;
         for (Profession profession: Profession.values()) {
-            if(profession.toString()==doctorData[5]){
+            if(profession.toString().equals(doctorData[5])){
                 found = true;
                 break;
             }
@@ -66,7 +66,7 @@ public class MedicalCenterDemo implements Commands{
         }
         list.pop(doctor);
         System.out.println("Doctor deleted.");
-        list.deletePatientsByDoctor(doctor);
+        list.deletePatientsByDoctor(doctor.getID());
     }
     public static void changeDoctorDataByID(){
         System.out.println("Input doctor ID.");
@@ -101,8 +101,11 @@ public class MedicalCenterDemo implements Commands{
         System.out.println("Input patient ID, name, surname, phone, doctor ID and registration time(dd/MM/yyyy hh:mm):");
         String patientStr = scanner.nextLine();
         String patientData[] = patientStr.split(",");
+
         if(list.getDoctorByID(patientData[4]) == null){
             System.out.println("No doctors with ID " + patientData[4] + " were found.");
+        }else if(list.getPatientByID(patientData[0]) != null){
+            System.out.println("Patient with ID " + patientData[0] + " already exists.");
         }else if(!list.isDoctorAvailable(list.getDoctorByID(patientData[4]), DateUtil.stringToDate(patientData[5])) ) {
             System.out.println("The doctor isn't available at that time.");
         }else{
@@ -143,6 +146,12 @@ public class MedicalCenterDemo implements Commands{
         list.add(new Doctor("0A_010","John","Smith","doc@gmail.com","012345678","PSYCHIATRISTS"));
         list.add(new Doctor("0A_011","John","Smith","doc@gmail.com","012345678","PSYCHIATRISTS"));
         list.add(new Doctor("0A_012","John","Smith","doc@gmail.com","012345678","PSYCHIATRISTS"));
+        list.add(new Patient("0b-001","Poxos","Poxosyan","098765432",list.getDoctorByID("0A_012"),"01/03/2023 10:11"));
+        list.add(new Patient("0b-002","Poxos","Poxosyan","098765432",list.getDoctorByID("0A_012"),"01/03/2023 11:11"));
+        list.add(new Patient("0b-003","Poxos","Poxosyan","098765432",list.getDoctorByID("0A_012"),"01/03/2023 9:11"));
+        //0b-003,Poxos,Poxosyan,098765432,0A_012,28/02/2023 9:11
+//        0b-002,Poxos,Poxosyan,098765432,0A_012,28/02/2023 10:11
+//        0b-001,Poxos,Poxosyan,098765432,0A_012,28/02/2023 11:11
         boolean isRun = true;
         while(isRun){
             Commands.printCommands();

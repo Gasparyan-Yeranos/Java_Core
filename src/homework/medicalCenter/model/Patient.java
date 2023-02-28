@@ -37,7 +37,7 @@ public class Patient extends Person{
                 "\n    Surname: " + getSurname() +
                 "\n    ID: " + getID() +
                 "\n    Phone: " + getPhone() +
-                "\n    Doctor: " + doctor.getName() +
+                "\n    Doctor ID: " + doctor.getID() +
                 "\n    RegisterDate: " + DateUtil.dateToString(registerDate) + " " + DateUtil.dateTimeToString(registerDate) +
                 "\n}";
     }
