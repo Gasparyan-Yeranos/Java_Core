@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Patient extends Person{
-    Doctor doctor;
-    Date registerDate;
+    private Doctor doctor;
+    private Date registerDate;
 
     public Patient(){}
     public Patient(String ID, String name, String surname, String phone, Doctor doctor, String registerDate) throws ParseException {
@@ -38,7 +38,7 @@ public class Patient extends Person{
                 "\n    ID: " + getID() +
                 "\n    Phone: " + getPhone() +
                 "\n    Doctor: " + doctor.getName() +
-                "\n    RegisterDate: " + DateUtil.dateToString(registerDate) +
+                "\n    RegisterDate: " + DateUtil.dateToString(registerDate) + " " + DateUtil.dateTimeToString(registerDate) +
                 "\n}";
     }
 

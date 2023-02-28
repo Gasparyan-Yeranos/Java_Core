@@ -1,36 +1,22 @@
 package homework.medicalCenter.model;
 
-import homework.medicalCenter.storage.PatientStorage;
-
+import homework.medicalCenter.enums.Profession;
 import java.util.Objects;
 
 public class Doctor extends Person{
     private String email;
-    private String profession;
-    private boolean isBusy;     //բայց ես չեմ հասկացել, թե երբ է busy, երբ ոչ
-    private PatientStorage patientList = new PatientStorage();
+    private Profession profession;
     public Doctor(){}
     public Doctor(String ID, String name, String surname, String email, String phone, String profession){
         super(name, surname, ID, phone);
-        this.email = email;
-        this.profession = profession;
-        isBusy = false;
+        try {
+            this.email = email;
+            this.profession = Profession.valueOf(profession);
+        }catch (IllegalArgumentException x){
+            System.out.println("Wrong profession chosen.");
+        }
     }
 
-    public void printPatients(){
-        patientList.print();
-    }
-
-
-    public PatientStorage getPatientList() {
-        return patientList;
-    }
-    public boolean ifIsBusy(){
-        return isBusy;
-    }
-    public void setBusy(boolean isBusy){
-        this.isBusy = isBusy;
-    }
     public String getEmail() {
         return email;
     }
@@ -38,10 +24,10 @@ public class Doctor extends Person{
         this.email = email;
     }
     public String getProfession() {
-        return profession;
+        return profession.toString();
     }
     public void setProfession(String profession) {
-        this.profession = profession;
+        this.profession = Profession.valueOf(profession);
     }
 
     @Override
@@ -64,8 +50,7 @@ public class Doctor extends Person{
                 "\n    ID: " + getID() +
                 "\n    Phone: " + getPhone() +
                 "\n    email: " + email +
-                "\n    profession: " + profession +
-                "\n    is busy: " + isBusy +
+                "\n    profession: " + profession.toString().toLowerCase() +
                 "\n}";
     }
 }

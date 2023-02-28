@@ -3,9 +3,9 @@ package homework.medicalCenter.model;
 import java.util.Objects;
 
 public class Person {
+    private String ID;
     private String name;
     private String surname;
-    private String ID;
     private String phone;
 
     public Person(){}
@@ -40,7 +40,6 @@ public class Person {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
     @Override
     public String toString() {
         return "Person{" +
@@ -62,7 +61,5 @@ public class Person {
         return Objects.hash(name, surname, ID, phone);
     }
 
-    public String getProfession() {
-        return "";
-    }
+
 }
