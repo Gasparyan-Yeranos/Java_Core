@@ -141,7 +141,7 @@ public class MedicalCenterDemo implements Commands{
         list.add(new Doctor("0A_008","John","Smith","doc@gmail.com","012345678","PSYCHIATRISTS"));
         list.add(new Doctor("0A_009","John","Smith","doc@gmail.com","012345678","PSYCHIATRISTS"));
         list.add(new Doctor("0A_010","John","Smith","doc@gmail.com","012345678","PSYCHIATRISTS"));
-        list.add(new Doctor("0A_010","John","Smith","doc@gmail.com","012345678","PSYCHIATRISTS"));
+        list.add(new Doctor("0A_011","John","Smith","doc@gmail.com","012345678","PSYCHIATRISTS"));
         list.add(new Doctor("0A_012","John","Smith","doc@gmail.com","012345678","PSYCHIATRISTS"));
         boolean isRun = true;
         while(isRun){
